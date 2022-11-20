@@ -61,7 +61,7 @@ export class DataTableComponent extends Component {
             ) : (
               <div style={{ display: 'none' }} />
             )}
-
+            
         <div className='bg-white shadow usrelist table-responsive'>
           <table className='table table-light table-striped table-bordered'>
             <thead className='thead-light'>

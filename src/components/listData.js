@@ -1,6 +1,31 @@
 
 import { DataTableComponent } from './dataTable/data-table'
 const schemadata = [
+
+  {
+    date: '20-12-2022',
+    cities: [
+      { name: 'Jaipur', code: 10 },
+      { name: 'Jodhpur', code: 20 }]
+  },
+  {
+    date: '20-12-2022',
+    cities: [
+      { name: 'Jaipur', code: 10 },
+      { name: 'Jodhpur', code: 20 }]
+  },
+  {
+    date: '20-12-2022',
+    cities: [
+      { name: 'Jaipur', code: 10 },
+      { name: 'Jodhpur', code: 20 }]
+  },
+  {
+    date: '20-12-2022',
+    cities: [
+      { name: 'Jaipur', code: 10 },
+      { name: 'Jodhpur', code: 20 }]
+  },
   {
     date: '20-12-2022',
     cities: [
@@ -52,7 +77,7 @@ export const ListData = (props) => {
               item.cities && item.cities.length && item.cities.find(y => x === y.name)
                 ? <td key={index} style={{ textAlign: 'center' }}>
                   {item.cities.find(y => x === y.name).code}
-                  </td>
+                </td>
                 : <td key={index} style={{ textAlign: 'center' }}> 0</td>
             ))}
           </tr>
@@ -62,12 +87,10 @@ export const ListData = (props) => {
       return ''
     }
   }
+  const pageCount = Math.ceil(schemadata.length / 10)
   return (
     <DataTableComponent
-      count={schemadata.length}
-            //   pageCount={pageCount}
-      search
-            //   navigate={props?.navigate}
+      search={false}
       filter={{
         search: '',
         sortBy: 'date',
@@ -77,8 +100,17 @@ export const ListData = (props) => {
       }}
       loader={false}
       headerData={headerData}
-      data={getHtml(schemadata)}
       html={getHtml(schemadata)}
+      count={schemadata.length}
+      pageCount={pageCount}
+    // navigate={this.props.navigate} 
+    // loader={this.props.loader} 
+    data={schemadata} 
+    // handleClick={this.props.getFormDataList}
+    // parentCheck={this.props.parentCheck}
+    // isSelect={this.props.isSelect}
+    // onParentSelect={this.props.onParentSelect}
+    // parentCheckBoxId={this.props.parentCheckBoxId}
     />
   )
 }
