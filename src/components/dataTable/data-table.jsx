@@ -42,7 +42,7 @@ export class DataTableComponent extends Component {
         {this.props.search
           ? 
           (
-            <div className='row height d-flex justify-content-center align-items-center mb-2'>
+            <div className='d-flex justify-content-center align-items-center mb-2'>
               <div className='col-md-6'>
                 <div className='searchBar'>
                   <i className='fa fa-search' />

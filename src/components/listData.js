@@ -1,57 +1,64 @@
 
 import { DataTableComponent } from './dataTable/data-table'
-const schemadata = [
+import DatePicker from "react-datepicker"; //import reat-datepicker module
+import "react-datepicker/dist/react-datepicker.css"; //import reat-datepicker module css 
+import { format } from 'date-fns'
+import { createRef, forwardRef, useState } from 'react';
+const apiData = [
 
   {
-    date: '20-12-2022',
+    date: '2022-11-25',
     cities: [
       { name: 'Jaipur', code: 10 },
       { name: 'Jodhpur', code: 20 }]
   },
   {
-    date: '20-12-2022',
+    date: '2022-11-25',
     cities: [
       { name: 'Jaipur', code: 10 },
       { name: 'Jodhpur', code: 20 }]
   },
   {
-    date: '20-12-2022',
+    date: '2022-11-25',
     cities: [
       { name: 'Jaipur', code: 10 },
       { name: 'Jodhpur', code: 20 }]
   },
   {
-    date: '20-12-2022',
+    date: '2022-11-25',
     cities: [
       { name: 'Jaipur', code: 10 },
       { name: 'Jodhpur', code: 20 }]
   },
   {
-    date: '20-12-2022',
+    date: '2022-11-25',
     cities: [
       { name: 'Jaipur', code: 10 },
       { name: 'Jodhpur', code: 20 }]
   },
   {
-    date: '20-11-2022',
+    date: '2022-12-25',
     cities: [
       { name: 'raj', code: 100 },
       { name: 'Jodhpur', code: 20 }]
   },
   {
-    date: '20-11-2022',
+    date: '2022-12-25',
     cities: [
       { name: 'Jaipur', code: 10 },
       { name: 'Jodhpur', code: 20 }]
   },
   {
-    date: '20-11-2022',
+    date: '2022-12-25',
     cities: [
       { name: 'Jaipur', code: 10 },
       { name: 'Jodhpur', code: 20 }]
   }
 ]
 export const ListData = (props) => {
+
+  const [selectedDate, setSelectedDate] = useState(null);
+  const [schemadata, setSchemadata] = useState(apiData);
   const cities = []
   const headerData = [
     { title: 'date', fieldName: 'date', sorting: true }
@@ -63,6 +70,9 @@ export const ListData = (props) => {
     if (cities && cities.length) {
       cities.forEach(x => headerData.push({ title: x.toUpperCase() }))
     }
+  }
+  const handleClick = (filter) => {
+    setSchemadata(schemadata.reverse())
   }
   const getHtml = (data) => {
     if (data.length > 0) {
@@ -87,30 +97,73 @@ export const ListData = (props) => {
       return ''
     }
   }
+  const DatePickerCustomInput = forwardRef(
+    ({ onClick }, ref) => (<div className="calendar_icon fa fa-arrow-down" onClick={onClick}> </div>)
+  );
+  const ref = createRef(); // we need to add a Dom ref to the new Component to avoid Dom reffrence Error
+  const handleDateChange = (e) => {
+    let filterData = apiData.filter(x => new Date(x.date).setHours(0, 0, 0, 0) === +e)
+    setSchemadata(filterData)
+    setSelectedDate(e)
+  }
   const pageCount = Math.ceil(schemadata.length / 10)
   return (
-    <DataTableComponent
-      search={false}
-      filter={{
-        search: '',
-        sortBy: 'date',
-        orderBy: 'ASC',
-        pageOffset: 0,
-        itemPerPage: 10
-      }}
-      loader={false}
-      headerData={headerData}
-      html={getHtml(schemadata)}
-      count={schemadata.length}
-      pageCount={pageCount}
-    // navigate={this.props.navigate} 
-    // loader={this.props.loader} 
-    data={schemadata} 
-    // handleClick={this.props.getFormDataList}
-    // parentCheck={this.props.parentCheck}
-    // isSelect={this.props.isSelect}
-    // onParentSelect={this.props.onParentSelect}
-    // parentCheckBoxId={this.props.parentCheckBoxId}
-    />
+    <>
+      <div className='row height d-flex justify-content-center align-items-center mb-2'>
+        <div className='col-md-6'>
+          <div className='searchBar'>
+            <div className="datepicker" style={{
+              display: "inline-block",
+              marginLeft: "6px",
+              fontSize: "1em",
+              color: "#32e0c4",
+              cursor: "pointer"
+            }} >
+              <DatePicker
+               closeOnScroll={true}
+                className='form-control border'
+                maxDate={new Date()}
+                selected={selectedDate}
+                onChange={handleDateChange}
+                // isClearable
+                // customInput={<DatePickerCustomInput ref={ref} />}
+                dateFormat="yyyy-MM-dd"
+              />
+            </div>
+            <i class="fa fa-refresh blackiconcolor" aria-hidden="true" onClick={() => {
+              setSchemadata(apiData)
+              setSelectedDate(null)
+            }}></i>
+            {/* <span className="left-pan"><i className="fa fa-microphone"></i></span> */}
+          </div>
+        </div>
+      </div>
+      <div>
+      </div>
+      <DataTableComponent
+        search={false}
+        filter={{
+          search: '',
+          sortBy: 'date',
+          orderBy: 'ASC',
+          pageOffset: 0,
+          itemPerPage: 10
+        }}
+        loader={false}
+        headerData={headerData}
+        html={getHtml(schemadata)}
+        count={schemadata.length}
+        pageCount={pageCount}
+        // navigate={this.props.navigate} 
+        // loader={this.props.loader} 
+        data={schemadata}
+        handleClick={handleClick}
+      // parentCheck={this.props.parentCheck}
+      // isSelect={this.props.isSelect}
+      // onParentSelect={this.props.onParentSelect}
+      // parentCheckBoxId={this.props.parentCheckBoxId}
+      />
+
+    </>
   )
 }

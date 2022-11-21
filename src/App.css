@@ -6,10 +6,21 @@ body {
   color:white;
 }
 
+.blackiconcolor {color:black;}
+
 .header {
   text-align: center;
 }
-
+.react-datepicker__navigation--next {
+  /* background: url(../images/rightArrow.png) no-repeat; */
+  width: 15px;
+  height: 15px;
+  border: none;
+}
+.react-datepicker__triangle {
+  position: fixed !important;
+  left: -50px !important;
+}
 .container {
   display: flex;
   align-items: center;
