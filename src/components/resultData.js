@@ -30,7 +30,12 @@ const apiData = [
     date: '2022-11-25',
     cities: [
       { name: 'Jaipur', code: 10 },
-      { name: 'Jodhpur', code: 20 }]
+      { name: 'Jodhpur', code: 20 },
+      { name: 'rajasthan', code: 20 },
+      { name: 'punjab', code: 20 },
+      { name: 'delhi', code: 20 },
+      { name: 'ja', code: 20 },
+      { name: 'aa', code: 20 }]
   },
   {
     date: '2022-11-25',

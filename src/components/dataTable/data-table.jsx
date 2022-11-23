@@ -38,8 +38,8 @@ export class DataTableComponent extends Component {
 
   render () {
     return (
-      <div>
-        <div className='usrelist table-responsive mx-0'>
+      <div className='mb-5 mx-5'>
+        <div className='usrelist table-responsive '>
           <table className='table table-light table-striped table-bordered'>
             <thead className='thead-light'>
               <tr> 
