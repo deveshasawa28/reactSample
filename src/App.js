@@ -3,7 +3,7 @@ import Header from './components/header'
 import { Home } from './components/home'
 import { Route, Routes } from 'react-router-dom'
 import { LoginContainer } from './components/login'
-import { ListData } from './components/listData'
+import { ResultData } from './components/resultData'
 import { NotFound } from './components/notFound'
 
 function App() {
@@ -15,9 +15,9 @@ function App() {
     <div className='App'>
       <Header />
       <Routes>
-        <Route exact path='/' element={<Home />} />
+        <Route exact path='/' element={<Home />} /> 
+        <Route exact path='/result' element={<ResultData />} />
         <Route exact path={logURL} element={<LoginContainer />} />
-        <Route exact path='/result' element={<ListData />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
     </div>

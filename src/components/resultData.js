@@ -7,7 +7,7 @@ import "react-datepicker/dist/react-datepicker.css"; //import reat-datepicker mo
 
 const apiData = [
   {
-    date: '2022-11-23time',
+    date: '2022-11-23',
     cities: [
       { name: 'Jaipur', code: 10 },
       { name: 'Jodhpur', code: 20 }]
@@ -55,15 +55,14 @@ const apiData = [
       { name: 'Jodhpur', code: 20 }]
   }
 ]
-export const ListData = (props) => {
+export const ResultData = (props) => {
   const [selectedDate, setSelectedDate] = useState(null);
   const [schemadata, setSchemadata] = useState([]);
   const cities = []
   const headerData = [
     { title: 'date', fieldName: 'date', sorting: true }
   ]
-
-  
+    
   const fetchData = () => {
     console.log(process.env.REACT_APP_API_URL)
     return fetch("https://jsonplaceholder.typicode.com/user")
@@ -110,18 +109,29 @@ export const ListData = (props) => {
       return ''
     }
   }
-  // const DatePickerCustomInput = forwardRef(
-  //   ({ onClick }, ref) => (<div className="calendar_icon fa fa-arrow-down" onClick={onClick}> </div>)
-  // );
-  // const ref = createRef(); // we need to add a Dom ref to the new Component to avoid Dom reffrence Error
   const handleDateChange = (e) => {
     let filterData = apiData.filter(x => new Date(x.date).setHours(0, 0, 0, 0) === +e)
     setSchemadata(filterData)
     setSelectedDate(e)
   }
   const pageCount = Math.ceil(schemadata.length / 10)
+  const getHeaderHtml = (data) => {
+    return (
+      <div className="text-center py-2" style={{ backgroundColor: 'aliceblue' }}>
+        <div className="col-md-12 col-sm-12 col-xs-12">
+          <h2>{data.header}</h2>
+          <p><span className="multicolor">{data.brandName}</span></p>
+        </div>
+      </div>
+    )
+  }
+  const intialHeaderValues = {
+    header: '--> Result can be placed here <--',
+    brandName: 'Your brand name can come here!',
+  }
   return (
     <>
+      {getHeaderHtml(intialHeaderValues)}
       <div className='height d-flex justify-content-center align-items-center mb-2 px-4'>
         <div className='col-md-6'>
           <div className='searchBar'>

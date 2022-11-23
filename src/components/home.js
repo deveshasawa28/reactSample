@@ -1,4 +1,4 @@
-const intialValues = {
+const intialHeaderValues = {
   header: '--> Result can be placed here <--',
   subHeading: 'Data can be loaded here!!',
   brandName: 'Your brand name can come here!',
@@ -8,7 +8,7 @@ const intialValues = {
 export const Home = () => {
   const getHeaderHtml = (data) => {
     return (
-      <div className="text-center" style={{ backgroundColor: 'aliceblue' }}>
+      <div className="text-center py-2" style={{ backgroundColor: 'aliceblue' }}>
         <div className="col-md-12 col-sm-12 col-xs-12">
           <h2>{data.header}</h2>
           <p><span className="multicolor">{data.brandName}</span></p>
@@ -24,9 +24,7 @@ export const Home = () => {
     )
   }
   return (
-    <div className="">
-      <>{getHeaderHtml(intialValues)}</>
-    </div>
+      <>{getHeaderHtml(intialHeaderValues)}</> 
   )
 }
 
