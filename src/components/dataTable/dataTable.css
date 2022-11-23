@@ -8,11 +8,11 @@
 
 
 
-.usrelist {
+/* .usrelist {
   overflow:auto;
   width:100%;
   height:200px;
-}
+} */
 td,
 th {
   border: 1px solid #000;
@@ -23,6 +23,7 @@ table {
   table-layout: fixed;
   width:100%;
 }
+
 td:first-child, th:first-child {
   position:sticky;
   left:0;

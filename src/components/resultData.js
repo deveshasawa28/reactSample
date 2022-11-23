@@ -2,20 +2,22 @@ import { useState, useEffect } from 'react';
 import { DataTableComponent } from './dataTable/data-table'
 import DatePicker from "react-datepicker"; //import reat-datepicker module
 import "react-datepicker/dist/react-datepicker.css"; //import reat-datepicker module css 
-// import { format } from 'date-fns'
-
 
 const apiData = [
   {
     date: '2022-11-23',
     cities: [
       { name: 'Jaipur', code: 10 },
+      { name: 'kota', code: 21 },
+      { name: 'ajmer', code: 22 },
+      { name: 'kolkata', code: 23 },
       { name: 'Jodhpur', code: 20 }]
   },
   {
     date: '2022-11-25',
     cities: [
       { name: 'Jaipur', code: 10 },
+      { name: 'bika', code: 25 },
       { name: 'Jodhpur', code: 20 }]
   },
   {
@@ -62,18 +64,18 @@ export const ResultData = (props) => {
   const headerData = [
     { title: 'date', fieldName: 'date', sorting: true }
   ]
-    
+
   const fetchData = () => {
     console.log(process.env.REACT_APP_API_URL)
     return fetch("https://jsonplaceholder.typicode.com/user")
-          .then((response) => response.json())
-          .then((data) => setSchemadata(apiData));
+      .then((response) => response.json())
+      .then((data) => setSchemadata(apiData));
   }
 
   useEffect(() => {
     fetchData();
-  },[])
-  
+  }, [])
+
   if (schemadata && schemadata.length) {
     console.log('Schema data', schemadata)
     schemadata.forEach((item, index) => {
@@ -143,7 +145,7 @@ export const ResultData = (props) => {
               cursor: "pointer"
             }} >
               <DatePicker
-               closeOnScroll={true}
+                closeOnScroll={true}
                 className='form-control border'
                 maxDate={new Date()}
                 selected={selectedDate}

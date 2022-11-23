@@ -39,34 +39,10 @@ export class DataTableComponent extends Component {
   render () {
     return (
       <div>
-        {this.props.search
-          ? 
-          (
-            <div className='d-flex justify-content-center align-items-center mb-2 px-2'>
-              <div className='col-md-6'>
-                <div className='searchBar'>
-                  <i className='fa fa-search' />
-                  <input
-                    onKeyUp={(e) => this.searchText(e)}
-                    type='text'
-                    className='form-control border'
-                    placeholder='Search'
-                    aria-label='Username'
-                    aria-describedby='basic-addon1'
-                  />
-                  {/* <span className="left-pan"><i className="fa fa-microphone"></i></span> */}
-                </div>
-              </div>
-            </div>
-            ) : (
-              <div style={{ display: 'none' }} />
-            )}
-            
-        <div className='bg-white shadow usrelist table-responsive px-2'>
+        <div className='usrelist table-responsive mx-0'>
           <table className='table table-light table-striped table-bordered'>
             <thead className='thead-light'>
-              <tr>
-               
+              <tr> 
                 {this.props.headerData && this.props.headerData.map((item, i) => {
                   return (
                     <th
