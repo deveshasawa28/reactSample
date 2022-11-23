@@ -1,5 +1,5 @@
 body {
-  background:linear-gradient(to left, green, white);
+  background:linear-gradient(to left, rgb(143, 214, 140), #bbb3b3);
   margin:0;
   padding:0;
   box-sizing:border-box;
@@ -8,25 +8,19 @@ body {
 
 .blackiconcolor {color:black;}
 
+.table-responsive>.fixed-column {
+  position: absolute;
+  display: inline-block;
+  width: auto;
+  border-right: 1px solid #ddd;
+}
+@media(min-width:768px) {
+  .table-responsive>.fixed-column {
+      display: none;
+  }
+}
 .header {
   text-align: center;
-}
-.react-datepicker__navigation--next {
-  /* background: url(../images/rightArrow.png) no-repeat; */
-  width: 15px;
-  height: 15px;
-  border: none;
-}
-.react-datepicker__triangle {
-  position: fixed !important;
-  left: -50px !important;
-}
-.container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  width: 100%;
 }
 
 .form-box {

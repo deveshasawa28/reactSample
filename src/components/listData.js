@@ -1,13 +1,13 @@
-
+import { useState, useEffect } from 'react';
 import { DataTableComponent } from './dataTable/data-table'
 import DatePicker from "react-datepicker"; //import reat-datepicker module
 import "react-datepicker/dist/react-datepicker.css"; //import reat-datepicker module css 
-import { format } from 'date-fns'
-import { createRef, forwardRef, useState } from 'react';
-const apiData = [
+// import { format } from 'date-fns'
 
+
+const apiData = [
   {
-    date: '2022-11-25',
+    date: '2022-11-23time',
     cities: [
       { name: 'Jaipur', code: 10 },
       { name: 'Jodhpur', code: 20 }]
@@ -37,7 +37,7 @@ const apiData = [
       { name: 'Jodhpur', code: 20 }]
   },
   {
-    date: '2022-12-25',
+    date: '2022-11-23',
     cities: [
       { name: 'raj', code: 100 },
       { name: 'Jodhpur', code: 20 }]
@@ -56,14 +56,27 @@ const apiData = [
   }
 ]
 export const ListData = (props) => {
-
   const [selectedDate, setSelectedDate] = useState(null);
-  const [schemadata, setSchemadata] = useState(apiData);
+  const [schemadata, setSchemadata] = useState([]);
   const cities = []
   const headerData = [
     { title: 'date', fieldName: 'date', sorting: true }
   ]
+
+  
+  const fetchData = () => {
+    console.log(process.env.REACT_APP_API_URL)
+    return fetch("https://jsonplaceholder.typicode.com/user")
+          .then((response) => response.json())
+          .then((data) => setSchemadata(apiData));
+  }
+
+  useEffect(() => {
+    fetchData();
+  },[])
+  
   if (schemadata && schemadata.length) {
+    console.log('Schema data', schemadata)
     schemadata.forEach((item, index) => {
       cities.push(...item.cities.filter((item) => cities.indexOf(item.name) < 0).map(x => x.name))
     })
@@ -79,7 +92,7 @@ export const ListData = (props) => {
       return data.map((item, index) => {
         return (
           <tr key={index}>
-            <td style={{ textAlign: 'center' }}>
+            <td style={{ width: '30%' }} className="fixed-column">
               {item.date}
               {/* {format(new Date(item.date), 'dd/MM/yyyy')} */}
             </td>
@@ -97,10 +110,10 @@ export const ListData = (props) => {
       return ''
     }
   }
-  const DatePickerCustomInput = forwardRef(
-    ({ onClick }, ref) => (<div className="calendar_icon fa fa-arrow-down" onClick={onClick}> </div>)
-  );
-  const ref = createRef(); // we need to add a Dom ref to the new Component to avoid Dom reffrence Error
+  // const DatePickerCustomInput = forwardRef(
+  //   ({ onClick }, ref) => (<div className="calendar_icon fa fa-arrow-down" onClick={onClick}> </div>)
+  // );
+  // const ref = createRef(); // we need to add a Dom ref to the new Component to avoid Dom reffrence Error
   const handleDateChange = (e) => {
     let filterData = apiData.filter(x => new Date(x.date).setHours(0, 0, 0, 0) === +e)
     setSchemadata(filterData)
@@ -109,7 +122,7 @@ export const ListData = (props) => {
   const pageCount = Math.ceil(schemadata.length / 10)
   return (
     <>
-      <div className='row height d-flex justify-content-center align-items-center mb-2'>
+      <div className='height d-flex justify-content-center align-items-center mb-2 px-4'>
         <div className='col-md-6'>
           <div className='searchBar'>
             <div className="datepicker" style={{

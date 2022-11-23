@@ -42,7 +42,7 @@ export class DataTableComponent extends Component {
         {this.props.search
           ? 
           (
-            <div className='d-flex justify-content-center align-items-center mb-2'>
+            <div className='d-flex justify-content-center align-items-center mb-2 px-2'>
               <div className='col-md-6'>
                 <div className='searchBar'>
                   <i className='fa fa-search' />
@@ -62,26 +62,11 @@ export class DataTableComponent extends Component {
               <div style={{ display: 'none' }} />
             )}
             
-        <div className='bg-white shadow usrelist table-responsive'>
+        <div className='bg-white shadow usrelist table-responsive px-2'>
           <table className='table table-light table-striped table-bordered'>
             <thead className='thead-light'>
               <tr>
-                <th style={this.props.isSelect ? {} : { display: 'none' }}>
-                  {' '}
-                  <input
-                    type='checkbox'
-                    onChange={(e) => this.props.onParentSelect(e)}
-                    id={this.props.parentCheckBoxId}
-                    checked={this.props.parentCheck}
-                    style={{
-                      fontSize: '18px',
-                      padding: '0px',
-                      verticalAlign: 'middle',
-                      position: 'relative',
-                      cursor: 'pointer'
-                    }}
-                  />
-                </th>
+               
                 {this.props.headerData && this.props.headerData.map((item, i) => {
                   return (
                     <th
