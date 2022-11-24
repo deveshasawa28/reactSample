@@ -1,3 +1,5 @@
+import { DataTableComponent } from "./dataTable/data-table"
+
 const intialHeaderValues = {
   header: '--> Result can be placed here <--',
   subHeading: 'Data can be loaded here!!',
@@ -8,7 +10,7 @@ const intialHeaderValues = {
 export const Home = () => {
   const getHeaderHtml = (data) => {
     return (
-      <div className="text-center py-2" style={{ backgroundColor: 'aliceblue' }}>
+      <div className="text-center py-2 mb-2" style={{ backgroundColor: 'aliceblue' }}>
         <div className="col-md-12 col-sm-12 col-xs-12">
           <h2>{data.header}</h2>
           <p><span className="multicolor">{data.brandName}</span></p>
@@ -24,22 +26,29 @@ export const Home = () => {
     )
   }
   return (
-      <>{getHeaderHtml(intialHeaderValues)}</> 
+    <>
+    {getHeaderHtml(intialHeaderValues)}
+    <DataTableComponent
+        loader={false}
+        headerData={[
+          { title: 'Date', fieldName: 'date' },
+          { title: 'results', fieldName: 'result' }
+        ]}
+        // html={getHtml(schemadata)}
+        // count={schemadata.length}
+        // pageCount={pageCount}
+        // navigate={this.props.navigate} 
+        // loader={this.props.loader} 
+        // data={schemadata}
+        // handleClick={handleClick}
+      // parentCheck={this.props.parentCheck}
+      // isSelect={this.props.isSelect}
+      // onParentSelect={this.props.onParentSelect}
+      // parentCheckBoxId={this.props.parentCheckBoxId}
+      />
+
+
+    </>
+
   )
 }
-
-
-
-{/* <div className='mask' style={{ backgroundColor: 'rgba(0, 0, 0, 0.6)' }}>
-            <div className='d-flex justify-content-center align-items-center h-100'>
-              <div className='text-white'>
-                <h1 className='mb-3'>Welcome {data.name}</h1>
-                <h4 className='mb-3'>{data.subHeading}</h4>
-                <a
-                  className='btn btn-outline-light btn-lg' href='#!' role='button'
-                >Call to action---3
-                </a
-                            >
-              </div>
-            </div>
-          </div> */}

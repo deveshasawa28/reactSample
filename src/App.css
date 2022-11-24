@@ -5,8 +5,54 @@ body {
   box-sizing:border-box;
   color:white;
 }
+.loader {
+  width: 20px;
+  height: 20px;
+  border: 3px solid #FFF;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+.datePicker {
+  width: 100%;
+}
+.react-datepicker__day.react-datepicker__day--keyboard-selected {
+  background: none;
+  color: black !important;
+}
+.react-datepicker-popper {
+  z-index: 9999 !important;
+}
 
-.blackiconcolor {color:black;}
+.react-datepicker__day:hover, .react-datepicker__month-text:hover, .react-datepicker__quarter-text:hover, .react-datepicker__year-text:hover {
+  background-color: #e3c7c7!important;
+}
+
+.loader::after {
+  content: '';  
+  box-sizing: border-box;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  border: 3px solid;
+  border-color: #FF3D00 transparent;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+} 
+.blackiconcolor {color:red;}
 
 .navbar-light .navbar-nav .nav-link {
   text-transform: uppercase;

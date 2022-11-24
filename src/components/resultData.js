@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { DataTableComponent } from './dataTable/data-table'
 import DatePicker from "react-datepicker"; //import reat-datepicker module
-import "react-datepicker/dist/react-datepicker.css"; //import reat-datepicker module css 
+import "react-datepicker/dist/react-datepicker.css";
 
 const apiData = [
   {
@@ -67,7 +67,7 @@ export const ResultData = (props) => {
   const [schemadata, setSchemadata] = useState([]);
   const cities = []
   const headerData = [
-    { title: 'date', fieldName: 'date', sorting: true }
+    { title: 'date', fieldName: 'date' }
   ]
 
   const fetchData = () => {
@@ -139,36 +139,35 @@ export const ResultData = (props) => {
   return (
     <>
       {getHeaderHtml(intialHeaderValues)}
-      <div className='height d-flex justify-content-center align-items-center mb-2 px-4'>
-        <div className='col-md-6'>
-          <div className='searchBar'>
-            <div className="datepicker" style={{
-              display: "inline-block",
-              marginLeft: "6px",
-              fontSize: "1em",
-              color: "#32e0c4",
-              cursor: "pointer"
-            }} >
-              <DatePicker
-                closeOnScroll={true}
-                className='form-control border'
-                maxDate={new Date()}
-                selected={selectedDate}
-                onChange={handleDateChange}
-                // isClearable
-                // customInput={<DatePickerCustomInput ref={ref} />}
-                dateFormat="yyyy-MM-dd"
-              />
-            </div>
-            <i class="fa fa-refresh blackiconcolor" aria-hidden="true" onClick={() => {
+      <div className='col-12' style={{
+        textAlign: '-webkit-center'
+      }}>
+        <div className="col-4 my-2 mx-5 d-flex justify-content-center align-items-center p-0" style={{
+          marginLeft: "6px",
+          fontSize: "1em",
+          color: "#32e0c4",
+          cursor: "pointer",
+          backgroundColor: "gainsboro",
+          borderRadius: '0.375rem'
+        }} >
+          <DatePicker
+            closeOnScroll={true}
+            className='form-control border'
+            maxDate={new Date()}
+            selected={selectedDate}
+            onChange={handleDateChange}
+            placeholderText="Select date"
+            // isClearable
+            // customInput={<DatePickerCustomInput ref={ref} />}
+            dateFormat="yyyy-MM-dd"
+          />
+          <div className='px-3' title='clear calender'>
+            <i className="fal fa-trash-alt blackiconcolor" aria-hidden="true" onClick={() => {
               setSchemadata(apiData)
               setSelectedDate(null)
             }}></i>
-            {/* <span className="left-pan"><i className="fa fa-microphone"></i></span> */}
           </div>
         </div>
-      </div>
-      <div>
       </div>
       <DataTableComponent
         search={false}
