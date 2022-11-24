@@ -70,7 +70,7 @@ export const ResultData = (props) => {
     { title: 'date', fieldName: 'date' }
   ]
 
-  const fetchData = () => {
+  const fetchData = async() => {
     console.log(process.env.REACT_APP_API_URL)
     return fetch("https://jsonplaceholder.typicode.com/user")
       .then((response) => response.json())
