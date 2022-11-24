@@ -42,7 +42,7 @@ export class DataTableComponent extends Component {
         <div className='usrelist table-responsive '>
           <table className='table table-light table-striped table-bordered'>
             <thead className='thead-light'>
-              <tr> 
+              <tr style={{textAlignLast: 'center'}}> 
                 {this.props.headerData && this.props.headerData.map((item, i) => {
                   return (
                     <th
@@ -78,7 +78,7 @@ export class DataTableComponent extends Component {
             <tbody>
               {this.props.loader
                 ? (
-                  <tr>
+                  <tr style={{textAlignLast: 'center'}} >
                     <td
                       colSpan={this.props.headerData.length}
                       style={{ width: '100%', align: 'center' }}
@@ -88,7 +88,7 @@ export class DataTableComponent extends Component {
                   </tr>
                   ) : this.props?.data?.length === 0
                     ? (
-                      <tr>
+                      <tr style={{textAlignLast: 'center'}}> 
                         <td
                           colSpan={this.props.headerData.length}
                           style={{ padding: '15%', width: '100%', fontSize: '20px', align: 'center' }}
