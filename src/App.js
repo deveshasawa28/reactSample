@@ -16,16 +16,15 @@ function App() {
     <div className='App'>
       <Header />
       <Routes>
-        <Route exact path='/' element={<Home />} /> 
+        <Route exact path='/' element={<Home />} />
         <Route exact path='/result' element={<ResultData />} />
         <Route exact path={logURL} element={<LoginComponent />} />
-        <Route
-            element={
-              <CheckAuth>
-                <NotFound />
-              </CheckAuth>
-            }
-          ></Route>
+        <Route element={
+          <CheckAuth>
+            <NotFound />
+          </CheckAuth>
+        }
+        ></Route>
         <Route path='*' element={<NotFound />} />
       </Routes>
     </div>
